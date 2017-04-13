@@ -1,0 +1,16 @@
+
+
+
+// Vérifier nos entités
+php bin/console doctrine:schema:validate
+
+doctrine:schema:update --force ou --dump-sql
+
+// Mettre à jour la base de donnée par rapport à nos entités
+php bin/console doctrine:schema:update --force
+
+// Générer un nouveau bundle
+generate:bundle
+
+// Générer une entité
+doctrine:generate:entity
