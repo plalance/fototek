@@ -53,4 +53,15 @@ class PhotoController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    public function onePhotoAction($id){
+
+        $photo = $this->getDoctrine()
+            ->getRepository('SiteBundle:Photo')
+            ->findOneBy(array('id'=>$id));
+
+        return $this->render('SiteBundle:Photo:one.html.twig', array(
+            'photo' => $photo,
+        ));
+    }
 }
