@@ -1,0 +1,11 @@
+home:
+    path:     /
+    defaults: { _controller: SiteBundle:Site:index }
+
+new_photo:
+    path:     /photo/new
+    defaults: { _controller: SiteBundle:Photo:newPhoto }
+
+my_photos:
+    path:     /me/photos
+    defaults: { _controller: SiteBundle:Photo:myPhotos }

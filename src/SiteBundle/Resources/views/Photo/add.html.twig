@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <h2>Ajouter une photo</h2>
+    <div class="row">
+        {{ form_start(form) }}
+        {#{{ form_widget(form) }}#}
+        <div class="col s12">
+            {{ form_label(form.fichier) }}
+            {{ form_widget(form.fichier) }}
+        </div>
+        <div class="input-field col s12">
+            {{ form_label(form.titre) }}
+            {{ form_widget(form.titre) }}
+        </div>
+        <div class="input-field col s12">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="input-field col s6">
+            {#{{ form_label(form.appareil) }}#}
+            {{ form_widget(form.appareil) }}
+        </div>
+
+        <div class="input-field col s6">
+            {#{{ form_label(form.objectif) }}#}
+            {{ form_widget(form.objectif) }}
+        </div>
+        <div class="col s12">
+            {{ form_label(form.statut) }}
+            {{ form_widget(form.statut) }}
+        </div>
+        <div class="col s12">
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date) }}
+        </div>
+        <div class="col s12">
+            {{ form_label(form.save) }}
+            {{ form_widget(form.save) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <script>
+        $('.material-select').material_select();
+    </script>
+{% endblock %}
