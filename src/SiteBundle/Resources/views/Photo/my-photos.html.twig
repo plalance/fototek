@@ -13,35 +13,39 @@
     </div>
     <h2>Mes photos</h2>
     <div class="row">
-        {% for photo in app.user.photos %}
-            <div class="col m6 s12 l4">
-                <div class="card hoverable">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('/uploads/Photos/'~photo.fichier) }}">
-                    </div>
-                    <div class="card-content">
+        {% if app.user.photos | length == 0 %}
+            <p>Vous n'avez pas de photos uploadées :(</p>
+        {% else %}
+            {% for photo in app.user.photos %}
+                <div class="col m6 s12 l4">
+                    <div class="card hoverable">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{ asset('/uploads/Photos/'~photo.fichier) }}">
+                        </div>
+                        <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ photo.titre }}<i
                                     class="material-icons right">more_vert</i></span>
-                        <p>
-                            <a href="#"><i class="material-icons">aspect_ratio</i></a>
-                            <a href="#"><i class="material-icons">list</i></a>
-                            <a href="#" class="right"><i class="material-icons">remove</i></a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
+                            <p>
+                                <a href="#"><i class="material-icons">aspect_ratio</i></a>
+                                <a href="#"><i class="material-icons">list</i></a>
+                                <a href="{{ path('delete_photo',{ 'id': photo.id }) }}" class="right"><i
+                                            class="material-icons">remove</i></a>
+                            </p>
+                        </div>
+                        <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4"><i
                                     class="material-icons right">close</i></span>
-                        <div class="tags">
-                            <p>Catégories</p>
-                            <div class="chip hoverable"><a href="#">Nature</a></div>
-                            <div class="chip hoverable"><a href="#">Ville</a></div>
-                            <div class="chip hoverable"><a href="#">Portrait</a></div>
-                            <div class="chip hoverable"><a href="#">Paysage</a></div>
+                            <div class="tags">
+                                <p>Catégories</p>
+                                <div class="chip hoverable"><a href="#">Nature</a></div>
+                                <div class="chip hoverable"><a href="#">Ville</a></div>
+                                <div class="chip hoverable"><a href="#">Portrait</a></div>
+                                <div class="chip hoverable"><a href="#">Paysage</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
-    <p>Je suis le contenu de SiteBundle -> index.html.twig</p>
 {% endblock %}

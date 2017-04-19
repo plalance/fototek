@@ -15,3 +15,9 @@ one_photo:
     defaults: { _controller: SiteBundle:Photo:onePhoto }
     requirements:
         id: '\d+'
+
+delete_photo:
+    path:     /photo/delete/{id}
+    defaults: { _controller: SiteBundle:Photo:deletePhoto }
+    requirements:
+        id: '\d+'

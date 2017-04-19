@@ -2,6 +2,7 @@
 
 namespace SiteBundle\Controller;
 
+use SiteBundle\Entity\Auteur;
 use SiteBundle\Entity\Photo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SiteBundle\Form\PhotoType;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\MimeType;
 
 class PhotoController extends Controller
 {
+
     public function myPhotosAction()
     {
         return $this->render('SiteBundle:Photo:my-photos.html.twig', array(
@@ -62,6 +64,29 @@ class PhotoController extends Controller
 
         return $this->render('SiteBundle:Photo:one.html.twig', array(
             'photo' => $photo,
+        ));
+    }
+
+    public function deletePhotoAction($id){
+
+        $suppression = false;
+
+        $photo = $this->getDoctrine()
+            ->getRepository('SiteBundle:Photo')
+            ->findOneBy(array('id'=>$id));
+
+        if ($photo->getAuteur() == $this->getUser()){
+
+            unlink($this->getParameter('photos_directory')."/".$photo->getFichier());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($photo);
+            $em->flush();
+            $suppression = true;
+        }
+
+        return $this->render('SiteBundle:Photo:suppression.html.twig', array(
+            "supression" => $suppression,
         ));
     }
 }

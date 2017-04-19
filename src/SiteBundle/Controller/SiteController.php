@@ -12,7 +12,7 @@ class SiteController extends Controller
         $me = $this->getUser();
         $photos = $this->getDoctrine()
             ->getRepository('SiteBundle:Photo')
-            ->findAll();
+            ->findBy(array(), array('publishedAt' => 'desc'));
 
         return $this->render('SiteBundle:Site:index.html.twig', array(
             "photos" =>$photos,

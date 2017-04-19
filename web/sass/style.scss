@@ -1,0 +1,10 @@
+#modalPhoto{
+  max-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  img{
+    display: block;
+    width: 100%;
+  }
+}
