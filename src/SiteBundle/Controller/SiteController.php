@@ -48,4 +48,26 @@ class SiteController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    public function deleteAppareilAction($id) {
+        $suppression = false;
+
+        $appareil = $this->getDoctrine()
+            ->getRepository('SiteBundle:Appareil')
+            ->findOneBy(array('id'=>$id));
+
+        if ($appareil->getAuteur() == $this->getUser()){
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($appareil);
+            $em->flush();
+            $suppression = true;
+        }
+
+        return $this->render('SiteBundle:Appareil:suppression.html.twig', array(
+            "supression" => $suppression,
+        ));
+
+    }
 }
