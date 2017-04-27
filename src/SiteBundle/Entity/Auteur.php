@@ -40,6 +40,28 @@ class Auteur extends BaseUser
     protected $photos;
 
     /**
+     * Un auteur possède plusieurs appareils
+     * @ORM\OneToMany(targetEntity="Appareil", mappedBy="auteur")
+     */
+    protected $appareils;
+
+    /**
+     * @return mixed
+     */
+    public function getAppareils()
+    {
+        return $this->appareils;
+    }
+
+    /**
+     * @param mixed $appareils
+     */
+    public function setAppareils($appareils)
+    {
+        $this->appareils = $appareils;
+    }
+
+    /**
      * Un auteur possède plusieurs sons
      * @ORM\OneToMany(targetEntity="MusicBundle\Entity\Sound", mappedBy="auteur")
      */

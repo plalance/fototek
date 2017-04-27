@@ -21,3 +21,7 @@ delete_photo:
     defaults: { _controller: SiteBundle:Photo:deletePhoto }
     requirements:
         id: '\d+'
+
+new_appareil:
+    path:     /appareil/new
+    defaults: { _controller: SiteBundle:Site:newAppareil }
