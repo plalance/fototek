@@ -47,7 +47,7 @@
                             du contenu</a></li>
                     <li><a class="waves-effect" href="#"><i class="material-icons">camera</i>Mon matériel</a></li>
                 {% endif %}
-                <li><a class="waves-effect" href="#"><i class="material-icons">edit</i>Editer mon profil</a></li>
+                <li><a class="waves-effect" href="{{ path('fos_user_profile_edit') }}"><i class="material-icons">edit</i>Editer mon profil</a></li>
             {% else %}
                 <a class="btn-floating btn-large waves-effect waves-light red"
                    href="{{ path('fos_user_security_login') }}"><i class="material-icons">perm_identity</i></a>

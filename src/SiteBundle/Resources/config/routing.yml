@@ -2,6 +2,17 @@ home:
     path:     /
     defaults: { _controller: SiteBundle:Site:index }
 
+#Overriding FOSUser NE PAS TOUCHER
+fos_user_profile_show:
+    path:     /mon-profil
+    defaults: { _controller: FOSUserBundle:Profile:show }
+    methods:  [GET]
+fos_user_profile_edit:
+    path:     /editer-mon-profil
+    defaults: { _controller: FOSUserBundle:Profile:edit }
+    methods:  [GET]
+
+
 new_photo:
     path:     /photo/new
     defaults: { _controller: SiteBundle:Photo:newPhoto }
