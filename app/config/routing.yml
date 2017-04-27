@@ -1,3 +1,7 @@
+music:
+    resource: "@MusicBundle/Resources/config/routing.yml"
+    prefix:   /music/
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 

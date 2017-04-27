@@ -1,0 +1,22 @@
+{% extends 'base_music.html.twig' %}
+{% block content %}
+    <h2>Boite à Son !</h2>
+    <div class="row">
+        {% for son in sons %}
+            <div class="col m6 s12 l4">
+                <div class="card hoverable">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ son.name }}<i
+                                    class="material-icons right">more_vert</i></span>
+                        <audio controls>
+                            <source src="{{ asset('/uploads/Sounds/'~son.file) }}" type="audio/mpeg">
+                        </audio>
+                            <a href="#" data-file="{{ son.file }}" class="button-a"><i
+                                        class="material-icons">play</i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

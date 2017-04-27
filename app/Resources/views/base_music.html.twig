@@ -36,12 +36,9 @@
                     <div class="divider"></div>
                 </li>
                 <li><a class="subheader">Activités</a></li>
-                <li><a href="#"><i class="material-icons">cloud</i>Découverte de photos</a></li>
-                <li><a href="{{ path('my_photos') }}"><i class="material-icons">perm_media</i>Mes albums / photos</a></li>
+                <li><a href="{{ path('my_photos') }}"><i class="material-icons">perm_media</i>Mes sons</a></li>
                 <li><a class="subheader">Mes actions</a></li>
-                <li><a class="waves-effect" href="{{ path('new_photo') }}"><i class="material-icons">add</i>Ajouter du contenu</a></li>
-                <li><a class="waves-effect" href="#"><i class="material-icons">camera</i>Mon matériel</a></li>
-                <li><a class="waves-effect" href="#"><i class="material-icons">edit</i>Editer mon profil</a></li>
+                <li><a class="waves-effect" href="{{ path('new_sound') }}"><i class="material-icons">add</i>Ajouter un son</a></li>
             {% else %}
                 <a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('fos_user_security_login') }}"><i class="material-icons">perm_identity</i></a>
                 {#<a href="">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}

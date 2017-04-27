@@ -39,16 +39,18 @@ class Auteur extends BaseUser
      */
     protected $photos;
 
+    /**
+     * Un auteur possède plusieurs sons
+     * @ORM\OneToMany(targetEntity="MusicBundle\Entity\Sound", mappedBy="auteur")
+     */
+    protected $sounds;
+
+
     public function __construct()
     {
         parent::__construct();
 
     }
-
-
-
-
-
 
     /**
      * @return int
@@ -96,6 +98,22 @@ class Auteur extends BaseUser
     public function setPhotos($photos)
     {
         $this->photos = $photos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSounds()
+    {
+        return $this->sounds;
+    }
+
+    /**
+     * @param mixed $sounds
+     */
+    public function setSounds($sounds)
+    {
+        $this->sounds = $sounds;
     }
 
 }

@@ -1,0 +1,7 @@
+music_home:
+    path:     /
+    defaults: { _controller: MusicBundle:Default:index }
+
+new_sound:
+    path:     /sound/new
+    defaults: { _controller: MusicBundle:Default:newSound }
