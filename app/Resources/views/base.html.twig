@@ -45,6 +45,8 @@
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a class="waves-effect" href="{{ path('new_photo') }}"><i class="material-icons">add</i>Ajouter
                             du contenu</a></li>
+                    <li><a class="waves-effect" href="{{ path('new_appareil') }}"><i class="material-icons">add</i>Ajouter
+                            un appareil</a></li>
                     <li><a class="waves-effect" href="#"><i class="material-icons">camera</i>Mon matériel</a></li>
                 {% endif %}
                 <li><a class="waves-effect" href="#"><i class="material-icons">edit</i>Editer mon profil</a></li>
