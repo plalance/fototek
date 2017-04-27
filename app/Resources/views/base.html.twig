@@ -37,13 +37,20 @@
                 </li>
                 <li><a class="subheader">Activités</a></li>
                 <li><a href="#"><i class="material-icons">cloud</i>Découverte de photos</a></li>
-                <li><a href="{{ path('my_photos') }}"><i class="material-icons">perm_media</i>Mes albums / photos</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ path('my_photos') }}"><i class="material-icons">perm_media</i>Mes albums /
+                            photos</a></li>
+                {% endif %}
                 <li><a class="subheader">Mes actions</a></li>
-                <li><a class="waves-effect" href="{{ path('new_photo') }}"><i class="material-icons">add</i>Ajouter du contenu</a></li>
-                <li><a class="waves-effect" href="#"><i class="material-icons">camera</i>Mon matériel</a></li>
+                {% if is_granted('ROLE_AUTEUR') %}
+                    <li><a class="waves-effect" href="{{ path('new_photo') }}"><i class="material-icons">add</i>Ajouter
+                            du contenu</a></li>
+                    <li><a class="waves-effect" href="#"><i class="material-icons">camera</i>Mon matériel</a></li>
+                {% endif %}
                 <li><a class="waves-effect" href="#"><i class="material-icons">edit</i>Editer mon profil</a></li>
             {% else %}
-                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('fos_user_security_login') }}"><i class="material-icons">perm_identity</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red"
+                   href="{{ path('fos_user_security_login') }}"><i class="material-icons">perm_identity</i></a>
                 {#<a href="">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
             {% endif %}
         </ul>
@@ -54,8 +61,10 @@
                 </a>
             </div>
             <div class="col s2 offset-s3 center-align">
-                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('home') }}"><i class="material-icons">home</i></a>
-                <a class="btn-floating btn-large waves-effect waves-light blue" href="{{ path('music_home') }}"><i class="material-icons">queue_music</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('home') }}"><i
+                            class="material-icons">home</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light blue" href="{{ path('music_home') }}"><i
+                            class="material-icons">queue_music</i></a>
             </div>
         </div>
     {% endblock %}
