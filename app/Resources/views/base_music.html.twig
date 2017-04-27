@@ -58,8 +58,12 @@
     {% endblock %}
 </header>
 <div class="container">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     {% block content %}
     {% endblock %}
+    {% else %}
+        <h2>Il faut se connecter pour avoir accès à cette partie du site ;)</h2>
+    {% endif %}
 </div>
 
 {% block javascripts %}
