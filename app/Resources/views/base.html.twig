@@ -42,7 +42,7 @@
                             photos</a></li>
                 {% endif %}
                 <li><a class="subheader">Mes actions</a></li>
-                {% if is_granted('ROLE_AUTEUR') %}
+                {% if is_granted('ROLE_ADMIN') %}
                     <li><a class="waves-effect" href="{{ path('new_photo') }}"><i class="material-icons">add</i>Ajouter
                             du contenu</a></li>
                     <li><a class="waves-effect" href="#"><i class="material-icons">camera</i>Mon matériel</a></li>
