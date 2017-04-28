@@ -42,6 +42,29 @@ class Objectif
      */
     private $prix;
 
+    /**
+     * Plusieurs photos sont au même auteur
+     * @ORM\ManyToOne(targetEntity="Auteur", inversedBy="objectifs")
+     * @ORM\JoinColumn(name="id_auteur", referencedColumnName="id_auteur")
+     */
+    private $auteur;
+
+    /**
+     * @return mixed
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * @param mixed $auteur
+     */
+    public function setAuteur($auteur)
+    {
+        $this->auteur = $auteur;
+    }
+
 
     /**
      * Get id

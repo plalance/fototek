@@ -40,10 +40,16 @@ class Auteur extends BaseUser
     protected $photos;
 
     /**
-     * Un auteur possède plusieurs appareils
-     * @ORM\OneToMany(targetEntity="Appareil", mappedBy="auteur")
-     */
+ * Un auteur possède plusieurs appareils
+ * @ORM\OneToMany(targetEntity="Appareil", mappedBy="auteur")
+ */
     protected $appareils;
+
+    /**
+     * Un auteur possède plusieurs objectifs
+     * @ORM\OneToMany(targetEntity="Objectif", mappedBy="auteur")
+     */
+    protected $objectifs;
 
     /**
      * @return mixed

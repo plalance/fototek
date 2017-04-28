@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <h2>Mon matériel</h2>
+    <h4>Mes appareils</h4>
+    {% for appareil in appareils %}
+        <p> {{ appareil.marque }} {{ appareil.libelle }} -
+
+            {% if appareil.prix != 0 %}
+                {{ appareil.prix }}€
+            {% else %}
+                <span>Pas de prix</span>
+            {% endif %}
+            <a href="{{ path('delete_appareil',{ 'id': appareil.id }) }}" class="right">Supprimer cet appareil</a>
+            <br></p>
+    {% endfor %}
+{% endblock %}

@@ -43,6 +43,16 @@ delete_appareil:
     requirements:
         id: '\d+'
 
-my_appareils:
+my_stuff:
     path:     /mes-appareils
-    defaults: { _controller: SiteBundle:Site:myAppareils }
+    defaults: { _controller: SiteBundle:Site:myStuff }
+
+new_lens:
+    path:     /lens/new
+    defaults: { _controller: SiteBundle:Site:newLens }
+
+delete_lens:
+    path:     /lens/delete/{id}
+    defaults: { _controller: SiteBundle:Site:deleteLens }
+    requirements:
+        id: '\d+'

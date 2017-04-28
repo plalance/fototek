@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block content %}
-    <h2>Supprimer un appareil</h2>
+    <h2>Supprimer un objectif</h2>
     {% if supression == true %}
         <h3>Bravo !</h3>
-        <p>L'appareil a bien été supprimé</p>
+        <p>L'objectif a bien été supprimé</p>
         {% else %}
             <h3>Erreur</h3>
-            <p>L'appareil n'a pas été supprimé</p>
+            <p>L'objectif n'a pas été supprimé</p>
     {% endif %}
     <a href="{{ path('my_appareils') }}">Retour au listing</a>
 {% endblock %}

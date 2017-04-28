@@ -2,6 +2,7 @@
 
 namespace SiteBundle\Controller;
 
+use SiteBundle\Entity\Objectif;
 use SiteBundle\Entity\Photo;
 use SiteBundle\Entity\Appareil;
 use SiteBundle\Form\AppareilType;
@@ -69,5 +70,38 @@ class SiteController extends Controller
             "supression" => $suppression,
         ));
 
+    }
+
+    public function myStuffAction()
+    {
+        $me = $this->getUser();
+        $appareils = $me->getAppareils();
+        return $this->render('SiteBundle:Materiel:list.html.twig', array(
+            "appareils"=>$appareils
+        ));
+    }
+
+    public function newLensAction (Request $request)
+    {
+        $lens= new Objectif();
+        $form = $this->createForm(AppareilType::class, $lens);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $lens->setLibelle($form->get('libelle')->getData());
+            $lens->setMarque($form->get('marque')->getData());
+            $lens->setPrix($form->get('prix')->getData());
+            $lens->setAuteur($this->getUser());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($lens);
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('SiteBundle:Appareil:add.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }
