@@ -18,7 +18,7 @@ new_photo:
     defaults: { _controller: SiteBundle:Photo:newPhoto }
 
 my_photos:
-    path:     /me/photos
+    path:     /mes-photos
     defaults: { _controller: SiteBundle:Photo:myPhotos }
 
 one_photo:
@@ -44,5 +44,5 @@ delete_appareil:
         id: '\d+'
 
 my_appareils:
-    path:     /me/appareils
+    path:     /mes-appareils
     defaults: { _controller: SiteBundle:Site:myAppareils }
