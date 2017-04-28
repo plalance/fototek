@@ -42,7 +42,7 @@ class SiteController extends Controller
             $em->persist($appareil);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('my_stuff');
         }
 
         return $this->render('SiteBundle:Appareil:add.html.twig', array(
