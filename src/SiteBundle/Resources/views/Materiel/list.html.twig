@@ -13,4 +13,16 @@
             <a href="{{ path('delete_appareil',{ 'id': appareil.id }) }}" class="right">Supprimer cet appareil</a>
             <br></p>
     {% endfor %}
+    <h4>Mes objectifs</h4>
+    {% for objectif in lens %}
+        <p> {{ objectif.marque }} {{ objectif.libelle }} -
+
+            {% if objectif.prix != 0 %}
+                {{ objectif.prix }}€
+            {% else %}
+                <span>Pas de prix</span>
+            {% endif %}
+            <a href="{{ path('delete_lens',{ 'id': objectif.id }) }}" class="right">Supprimer cet objectif</a>
+            <br></p>
+    {% endfor %}
 {% endblock %}

@@ -54,6 +54,22 @@ class Auteur extends BaseUser
     /**
      * @return mixed
      */
+    public function getObjectifs()
+    {
+        return $this->objectifs;
+    }
+
+    /**
+     * @param mixed $objectifs
+     */
+    public function setObjectifs($objectifs)
+    {
+        $this->objectifs = $objectifs;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getAppareils()
     {
         return $this->appareils;

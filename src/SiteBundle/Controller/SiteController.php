@@ -76,9 +76,12 @@ class SiteController extends Controller
     {
         $me = $this->getUser();
         $appareils = $me->getAppareils();
+        $lens = $me->getObjectifs();
         return $this->render('SiteBundle:Materiel:list.html.twig', array(
-            "appareils"=>$appareils
+            "appareils"=>$appareils,
+            "lens"=>$lens
         ));
+
     }
 
     public function newLensAction (Request $request)
@@ -97,11 +100,33 @@ class SiteController extends Controller
             $em->persist($lens);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('my_stuff');
         }
 
         return $this->render('SiteBundle:Appareil:add.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    public function deleteLensAction($id) {
+        $suppression = false;
+
+        $lens = $this->getDoctrine()
+            ->getRepository('SiteBundle:Objectif')
+            ->findOneBy(array('id'=>$id));
+
+        if ($lens->getAuteur() == $this->getUser()){
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($lens);
+            $em->flush();
+            $suppression = true;
+        }
+
+        return $this->render('SiteBundle:Objectif:suppression.html.twig', array(
+            "supression" => $suppression,
+        ));
+
     }
 }
