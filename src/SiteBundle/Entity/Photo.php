@@ -120,8 +120,6 @@ class Photo
     private $objectif;
 
 
-
-
     /**
      * Photo constructor.
      */

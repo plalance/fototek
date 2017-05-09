@@ -103,7 +103,7 @@ class SiteController extends Controller
             return $this->redirectToRoute('my_stuff');
         }
 
-        return $this->render('SiteBundle:Appareil:add.html.twig', array(
+        return $this->render('SiteBundle:Objectif:add.html.twig', array(
             'form' => $form->createView(),
         ));
     }
