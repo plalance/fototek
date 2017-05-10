@@ -106,9 +106,9 @@ class Photo
     private $tags;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="appareil", type="text", nullable=true)
+     * Plusieurs photos sont au même appareil
+     * @ORM\ManyToOne(targetEntity="Appareil", inversedBy="lesPhotosPrises")
+     * @ORM\JoinColumn(name="id_appareil", referencedColumnName="id_appareil")
      */
     private $appareil;
 
@@ -371,7 +371,7 @@ class Photo
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getAppareil()
     {
@@ -379,12 +379,13 @@ class Photo
     }
 
     /**
-     * @param string $appareil
+     * @param mixed $appareil
      */
     public function setAppareil($appareil)
     {
         $this->appareil = $appareil;
     }
+
 
     /**
      * @return string
@@ -417,6 +418,5 @@ class Photo
     {
         $this->fichier = $fichier;
     }
-
 }
 

@@ -18,8 +18,6 @@ class SiteController extends Controller
             ->getRepository('SiteBundle:Photo')
             ->findBy(array(), array('publishedAt' => 'desc'));
 
-        $table = [1,2,3,4,5];
-
         return $this->render('SiteBundle:Site:index.html.twig', array(
             "photos" =>$photos,
             "me" => $me
@@ -128,5 +126,22 @@ class SiteController extends Controller
             "supression" => $suppression,
         ));
 
+    }
+
+    public function debugPhotoAction($id){
+        $me = $this->getUser();
+
+        $photo = $this->getDoctrine()
+            ->getRepository('SiteBundle:Photo')
+            ->findOneBy(array('id'=>$id));
+        $appareil = $this->getDoctrine()
+            ->getRepository('SiteBundle:Appareil')
+            ->findOneBy(array('id'=>2));
+
+        return $this->render('SiteBundle:Site:debug.html.twig', array(
+            "debug" => $photo,
+            "appareil" => $appareil,
+            "me" => $me
+        ));
     }
 }

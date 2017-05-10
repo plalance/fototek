@@ -23,7 +23,7 @@ class PhotoController extends Controller
     public function newPhotoAction(Request $request)
     {
         $photo = new Photo();
-        $form = $this->createForm(PhotoType::class, $photo);
+        $form = $this->createForm(PhotoType::class, $photo, array("autor" => $this->getUser()));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

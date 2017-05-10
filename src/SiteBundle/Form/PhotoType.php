@@ -3,6 +3,10 @@
 namespace SiteBundle\Form;
 
 use Doctrine\DBAL\Types\IntegerType;
+use Doctrine\ORM\EntityRepository;
+use SiteBundle\Entity\Auteur;
+use SiteBundle\Repository\AppareilRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -11,12 +15,16 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class PhotoType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options){
+        $autor = $options['autor'];
+//        $this->autor = $options['autor'];
+
         $builder
             ->add('fichier', FileType::class)
             ->add('titre', TextType::class)
@@ -35,15 +43,17 @@ class PhotoType extends AbstractType
                     return strtoupper($key);
                 },
             ))
-
-            ->add('appareil', ChoiceType::class, array(
+            ->add('appareil', EntityType::class, array(
+                'label' => 'Choisissez votre appareil',
+                'class' => 'SiteBundle:Appareil',
                 'attr' => ['class' => 'material-select'],
-                'choices' => array(
-                    'EOS 700D' => true,
-                    'EOS 5D MARK II' => false,
-                    'Nikon 5500D' => false,
-                )
+                'query_builder' => function(AppareilRepository $ar) use ($autor){
+                    return $ar->getAllByAutor($autor);
+                },
+                'choice_label' => 'libelle',
+                 'multiple' => false,
             ))
+
             ->add('objectif', ChoiceType::class, array(
                 'attr' => ['class' => 'material-select'],
                 'choices' => array(
@@ -62,4 +72,15 @@ class PhotoType extends AbstractType
                 'attr' => ['class' => 'btn waves-effect waves-light'],
             ));
     }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'autor' => new Auteur(),
+        ]);
+
+        $resolver->setRequired('autor'); // Requires that currentOrg be set by the caller.
+        $resolver->setAllowedTypes('autor', 'SiteBundle\Entity\Auteur'); // Validates the type(s) of option(s) passed.
+    }
+
 }

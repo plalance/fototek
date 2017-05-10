@@ -23,7 +23,8 @@
                         <span class="card-title activator grey-text text-darken-4">{{ photo.titre }}<i
                                     class="material-icons right">more_vert</i></span>
                         <p>
-                            <a href="#modalPhoto" data-image="{{ photo.fichier }}" class="button-a"><i class="material-icons">aspect_ratio</i></a>
+                            <a href="#modalPhoto" data-image="{{ photo.fichier }}" class="button-a"><i
+                                        class="material-icons">aspect_ratio</i></a>
                             <a href="{{ path('one_photo',{ 'id': photo.id }) }}"><i class="material-icons">list</i></a>
                         </p>
                     </div>
@@ -59,9 +60,9 @@
     </div>
     <script>
         $('.button-a').click(function () {
-            var src = "{{ asset('/uploads/Photos/') }}"+$(this).attr("data-image");
+            var src = "{{ asset('/uploads/Photos/') }}" + $(this).attr("data-image");
             console.log(src);
-            $("#photoFull").attr("src",src);
+            $("#photoFull").attr("src", src);
         });
 
         $('.modal').modal();

@@ -15,7 +15,7 @@ class Appareil
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id_appareil", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -50,6 +50,12 @@ class Appareil
     private $auteur;
 
     /**
+     * Un appareil possède plusieurs photos
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="appareil")
+     */
+    private $lesPhotosPrises;
+
+    /**
      * @return mixed
      */
     public function getAuteur()
@@ -81,6 +87,22 @@ class Appareil
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLesPhotosPrises()
+    {
+        return $this->lesPhotosPrises;
+    }
+
+    /**
+     * @param mixed $lesPhotosPrises
+     */
+    public function setLesPhotosPrises($lesPhotosPrises)
+    {
+        $this->lesPhotosPrises = $lesPhotosPrises;
     }
 
     /**
@@ -155,6 +177,9 @@ class Appareil
         return $this->prix;
     }
 
+    public function __toString() {
+        return $this->libelle;
+    }
 
 }
 
