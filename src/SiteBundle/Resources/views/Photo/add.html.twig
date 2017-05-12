@@ -37,6 +37,7 @@
             {{ form_label(form.save) }}
             {{ form_widget(form.save) }}
         </div>
+        <input type="text" >
         {{ form_end(form) }}
     </div>
     <script>
@@ -44,6 +45,22 @@
         $('.datepicker').pickadate({
             selectMonths: true,
             selectYears: 15
+        });
+        var autocomplete = $('.autoCompleteMe').materialize_autocomplete({
+            limit: 20,
+            multiple: {
+                enable: true,
+                maxSize: 10,
+                onExist: function (item) { /* ... */ },
+                onExceed: function (maxSize, item) { /* ... */ }
+            },
+            appender: {
+                el: '.appender'
+            },
+            getData: function (value, callback) {
+                // ...
+                callback(value, data);
+            }
         });
     </script>
 {% endblock %}
