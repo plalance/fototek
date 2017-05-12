@@ -15,7 +15,7 @@ class Objectif
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id_objectif", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -48,6 +48,12 @@ class Objectif
      * @ORM\JoinColumn(name="id_auteur", referencedColumnName="id_auteur")
      */
     private $auteur;
+
+    /**
+     * Un appareil possède plusieurs photos
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="objectif")
+     */
+    private $lesPhotosPrises;
 
     /**
      * @return mixed
@@ -147,5 +153,27 @@ class Objectif
     {
         return $this->prix;
     }
+
+    public function __toString() {
+        return $this->libelle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLesPhotosPrises()
+    {
+        return $this->lesPhotosPrises;
+    }
+
+    /**
+     * @param mixed $lesPhotosPrises
+     */
+    public function setLesPhotosPrises($lesPhotosPrises)
+    {
+        $this->lesPhotosPrises = $lesPhotosPrises;
+    }
+
+
 }
 
