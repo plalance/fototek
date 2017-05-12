@@ -74,6 +74,7 @@
     {% endblock %}
 </header>
 <div class="container">
+    {{ dump(app.request.server.get('DOCUMENT_ROOT')) }}
     {% block content %}
     {% endblock %}
 </div>
