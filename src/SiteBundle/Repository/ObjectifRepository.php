@@ -10,4 +10,12 @@ namespace SiteBundle\Repository;
  */
 class ObjectifRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllByAutor ($autorObject)
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.auteur = :auteur')
+            ->setParameter('auteur', $autorObject);
+
+        return $qb;
+    }
 }

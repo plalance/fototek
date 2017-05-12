@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\EntityRepository;
 use SiteBundle\Entity\Auteur;
 use SiteBundle\Repository\AppareilRepository;
+use SiteBundle\Repository\ObjectifRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -54,12 +55,15 @@ class PhotoType extends AbstractType
                  'multiple' => false,
             ))
 
-            ->add('objectif', ChoiceType::class, array(
+            ->add('objectif', EntityType::class, array(
+                'label' => 'Choisissez votre objectif',
+                'class' => 'SiteBundle:Objectif',
                 'attr' => ['class' => 'material-select'],
-                'choices' => array(
-                    'Canon 70-200 f.8L IS USM' => true,
-                    'Leica 50mm f1.2' => false
-                )
+                'query_builder' => function(ObjectifRepository $or) use ($autor){
+                    return $or->getAllByAutor($autor);
+                },
+                'choice_label' => 'libelle',
+                'multiple' => false,
             ))
 
             ->add('date', DateType::class, array(

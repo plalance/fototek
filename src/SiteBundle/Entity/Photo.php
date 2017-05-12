@@ -112,10 +112,12 @@ class Photo
      */
     private $appareil;
 
+
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="objectif", type="text", nullable=true)
+     * Plusieurs objectifs sont au même appareil
+     * @ORM\ManyToOne(targetEntity="Objectif", inversedBy="lesPhotosPrises")
+     * @ORM\JoinColumn(name="id_objectif", referencedColumnName="id_objectif")
      */
     private $objectif;
 
@@ -386,9 +388,8 @@ class Photo
         $this->appareil = $appareil;
     }
 
-
     /**
-     * @return string
+     * @return mixed
      */
     public function getObjectif()
     {
@@ -396,12 +397,15 @@ class Photo
     }
 
     /**
-     * @param string $objectif
+     * @param mixed $objectif
      */
     public function setObjectif($objectif)
     {
         $this->objectif = $objectif;
     }
+
+
+
 
     /**
      * @return string
