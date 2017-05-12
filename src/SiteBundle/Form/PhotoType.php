@@ -63,10 +63,12 @@ class PhotoType extends AbstractType
             ))
 
             ->add('date', DateType::class, array(
+                'attr' => ['class' => 'datepicker'],
                 'label' => 'Date de la photo',
                 'widget' => 'single_text',
                 'html5' => true,
             ))
+
             ->add('save', SubmitType::class, array(
                 'label' => 'Sauvegarder',
                 'attr' => ['class' => 'btn waves-effect waves-light'],
