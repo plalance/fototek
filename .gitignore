@@ -34,6 +34,9 @@
 # Assets managed by Bower
 /web/assets/vendor/
 
+# App_dev.php
+/web/app_dev.php
+
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml
