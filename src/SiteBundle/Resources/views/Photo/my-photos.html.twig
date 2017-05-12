@@ -13,10 +13,10 @@
     </div>
     <h2>Mes photos</h2>
     <div class="row">
-        {% if app.user.photos | length == 0 %}
+        {% if photos | length == 0 %}
             <p>Vous n'avez pas de photos uploadées :(</p>
         {% else %}
-            {% for photo in app.user.photos %}
+            {% for photo in photos %}
                 <div class="col m6 s12 l4">
                     <div class="card hoverable">
                         <div class="card-image waves-effect waves-block waves-light">

@@ -24,7 +24,7 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="label", type="string", length=255)
+     * @ORM\Column(name="label_tag", type="string", length=255)
      */
     private $label;
 
@@ -39,6 +39,7 @@ class Tag
      *      )
      */
     private $photos;
+
 
     /**
      * Tag constructor.

@@ -16,7 +16,9 @@ class PhotoController extends Controller
 
     public function myPhotosAction()
     {
+        $photos = $this->getUser()->getPhotos();
         return $this->render('SiteBundle:Photo:my-photos.html.twig', array(
+            "photos" => $photos,
         ));
     }
 
