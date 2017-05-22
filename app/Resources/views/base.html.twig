@@ -37,6 +37,7 @@
                 </li>
                 <li><a class="subheader">Activités</a></li>
                 <li><a href="#"><i class="material-icons">cloud</i>Découverte de photos</a></li>
+                <li><a href="{{ path("listing_tag") }}"><i class="material-icons">cloud</i>Listing des Tags</a></li>
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ path('my_photos') }}"><i class="material-icons">perm_media</i>Mes albums /
                             photos</a></li>
@@ -49,6 +50,8 @@
                             un appareil</a></li>
                     <li><a class="waves-effect" href="{{ path('new_lens') }}"><i class="material-icons">add</i>Ajouter
                             un objectif</a></li>
+                    <li><a class="waves-effect" href="{{ path('new_tag') }}"><i class="material-icons">add</i>Ajouter
+                            un tag</a></li>
                     <li><a class="waves-effect" href="{{ path('my_stuff') }}"><i class="material-icons">camera</i>Mon matériel</a></li>
                 {% endif %}
                 <li><a class="waves-effect" href="{{ path('fos_user_profile_edit') }}"><i class="material-icons">edit</i>Editer mon profil</a></li>
@@ -73,6 +76,7 @@
         </div>
     {% endblock %}
 </header>
+
 <div class="container">
     {#{{ dump(app.request.server.get('DOCUMENT_ROOT')) }}#}
     {% block content %}

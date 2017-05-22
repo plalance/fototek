@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <h2>Tags</h2>
+    <div class="row">
+        {% for tag in tags %}
+            <p>{{ tag.label }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

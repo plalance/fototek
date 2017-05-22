@@ -62,3 +62,17 @@ delete_lens:
     defaults: { _controller: SiteBundle:Site:deleteLens }
     requirements:
         id: '\d+'
+
+new_tag:
+    path:     /tag/new
+    defaults: { _controller: SiteBundle:Tag:newTag }
+
+delete_tag:
+    path:     /tag/delete/{id}
+    defaults: { _controller: SiteBundle:Tag:deleteTag }
+    requirements:
+        id: '\d+'
+
+listing_tag:
+    path:     /tags
+    defaults: { _controller: SiteBundle:Tag:listingTag }

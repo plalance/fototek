@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+<h2>Ajouter un Tag</h2>
+    {% if error is defined %}
+        <p>Tags que vous avez saisi</p>
+        {{ dump(error) }}
+    {% endif %}
+    {% if tagsError is defined %}
+        <p>Les tags suivant n'ont pas été ajoutés, ils existent déjà.</p>
+        {{ dump(tagsError) }}
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('listing_tag') }}">Listing des tags</a>
+
+{% endblock %}
