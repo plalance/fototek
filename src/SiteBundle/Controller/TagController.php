@@ -68,8 +68,21 @@ class TagController extends Controller {
         ));
     }
 
-    public function deleteTagAction(){
+    public function deleteTagAction($id){
+        $suppression = false;
+
+        $tag = $this->getDoctrine()
+            ->getRepository('SiteBundle:Tag')
+            ->findOneBy(array('id'=>$id));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($tag);
+            $em->flush();
+            $suppression = true;
+
+
         return $this->render('SiteBundle:Tag:suppression.html.twig', array(
+            "supression" => $suppression,
         ));
     }
 }

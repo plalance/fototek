@@ -3,7 +3,8 @@
     <h2>Tags</h2>
     <div class="row">
         {% for tag in tags %}
-            <p>{{ tag.label }}</p>
+            <p>{{ tag.label }}
+            <a href="{{ path('delete_tag',{ 'id': tag.id }) }}" class="right">Supprimer ce tag</a></p>
         {% endfor %}
     </div>
 {% endblock %}

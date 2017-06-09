@@ -10,4 +10,11 @@ namespace SiteBundle\Repository;
  */
 class TagRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllTag ()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.tag = :tag');
+
+        return $qb;
+    }
 }
