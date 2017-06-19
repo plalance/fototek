@@ -3,32 +3,61 @@
     <div class="row">
         {% if photo is defined %}
             <h2>{{ photo.titre }}</h2>
-            <div class="col m6 s12 l4">
-                <div class="card hoverable">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('/uploads/Photos/'~photo.fichier) }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ photo.titre }}<i
-                                    class="material-icons right">more_vert</i></span>
-                        <p>
-                            <a href="#"><i class="material-icons">aspect_ratio</i></a>
-                            <a href="{{ path('one_photo',{ 'id': photo.id }) }}"><i class="material-icons">list</i></a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><i
-                                    class="material-icons right">close</i></span>
-                        <div class="tags">
-                            <p>Catégories</p>
-                            <div class="chip hoverable"><a href="#">Nature</a></div>
-                            <div class="chip hoverable"><a href="#">Ville</a></div>
-                            <div class="chip hoverable"><a href="#">Portrait</a></div>
-                            <div class="chip hoverable"><a href="#">Paysage</a></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col m6 s12 l6 one">
+                <img src="{{ asset('/uploads/Photos/'~photo.fichier) }}" alt="{{ photo.titre }}">
             </div>
+            <div class="col m12 s12 l6 one infoPhoto">
+                <div class="row">
+                    <p>Cette photo à été prise par : <span>{{ photo.auteur }}</span></p>
+                </div>
+                <div class="row">
+                    <p>{{ photo.description }}</p>
+                </div>
+                <div class="row">
+                    <p>Photo prise avec un {{ photo.appareil }}, équipé d'un objectif {{ photo.objectif }}</p>
+                </div>
+                <div class="row">
+                    <p>Tags :
+                        <ul>
+                            {% for tag in photo.tags %}
+                                <li>{{ tag.label }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+                <div class="row">
+                    <p>Photo prise le : {{ photo.date|date("d/m/Y") }}</p>
+                    <p>Photo publiée le : {{ photo.updatedAt|date("d/m/Y") }}</p>
+                    <p>Dernière modification : {{ photo.publishedAt|date("d/m/Y") }}</p>
+                </div>
+
+            </div>
+            {#<div class="col m6 s12 l4">#}
+                {#<div class="card hoverable">#}
+                    {#<div class="card-image waves-effect waves-block waves-light">#}
+                        {#<img class="activator" src="{{ asset('/uploads/Photos/'~photo.fichier) }}">#}
+                    {#</div>#}
+                    {#<div class="card-content">#}
+                        {#<span class="card-title activator grey-text text-darken-4">{{ photo.titre }}<i#}
+                                    {#class="material-icons right">more_vert</i></span>#}
+                        {#<p>#}
+                            {#<a href="#"><i class="material-icons">aspect_ratio</i></a>#}
+                            {#<a href="{{ path('one_photo',{ 'id': photo.id }) }}"><i class="material-icons">list</i></a>#}
+                        {#</p>#}
+                    {#</div>#}
+                    {#<div class="card-reveal">#}
+                        {#<span class="card-title grey-text text-darken-4"><i#}
+                                    {#class="material-icons right">close</i></span>#}
+                        {#<div class="tags">#}
+                            {#<p>Catégories</p>#}
+                            {#<div class="chip hoverable"><a href="#">Nature</a></div>#}
+                            {#<div class="chip hoverable"><a href="#">Ville</a></div>#}
+                            {#<div class="chip hoverable"><a href="#">Portrait</a></div>#}
+                            {#<div class="chip hoverable"><a href="#">Paysage</a></div>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
         {% endif %}
     </div>
 {% endblock %}
