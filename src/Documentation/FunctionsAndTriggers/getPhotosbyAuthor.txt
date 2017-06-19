@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION getPhotosByAutor(INTEGER)
+RETURNS SETOF photo
+AS $truc$
+BEGIN
+	RETURN QUERY SELECT * FROM photo WHERE id_auteur = $1 AND statut=0;
+END;
+$truc$
+LANGUAGE plpgsql;

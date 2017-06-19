@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: phototeque
+    database_user: phototeque
+    database_password: azerty123lol
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 34f6cd9b15585c71bd5c88cce795fba9b02a2565
