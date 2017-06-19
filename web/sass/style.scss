@@ -8,3 +8,11 @@
     width: 100%;
   }
 }
+.card{
+  &.blob{
+    background-color: #d35656;
+  }
+  &.blob-alternate{
+    background-color: #ffd67c;
+  }
+}

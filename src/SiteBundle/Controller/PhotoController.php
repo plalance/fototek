@@ -2,6 +2,7 @@
 
 namespace SiteBundle\Controller;
 
+use Doctrine\ORM\Query\ResultSetMapping;
 use SiteBundle\Entity\Auteur;
 use SiteBundle\Entity\Photo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,6 +18,36 @@ class PhotoController extends Controller
     public function myPhotosAction()
     {
         $photos = $this->getUser()->getPhotos();
+//        $autorId = $this->getUser()->getId();
+//
+//        $fileLoader = $this->container->getParameter('file_loader');
+//
+//        $photos = array();
+//
+//        $connection = $this->getDoctrine()->getManager()->getConnection();
+//        $statement = $connection->prepare("SELECT * FROM getphotos()");
+////        $statement->bindValue('idd', $autorId);
+//        $statement->execute();
+//
+//        while ($row = $statement->fetch()) {
+//            $obj = json_decode($row['getphotos']);
+//            dump($obj);
+//            $photo = new Photo();
+//            $photo->setTitre($obj.titre);
+//            $photo->setDescription($obj.descritpion);
+//            $photo->setDate($obj.date);
+//            $photo->setPublishedAt($obj.publishedat);
+//            $photo->setUpdatedAt($obj.updatedat);
+//            switch ($fileLoader){
+//                case 'BLOB':
+//                    $photo->setBlobFile($obj);
+//                    break;
+//                case 'FILE':
+//                    break;
+//            }
+//        }
+//        dump($var);
+//        die;
         return $this->render('SiteBundle:Photo:my-photos.html.twig', array(
             "photos" => $photos,
         ));
@@ -40,17 +71,20 @@ class PhotoController extends Controller
             $photo->setPublishedAt(date_create());
             $photo->setUpdatedAt(date_create());
             $photo->setFichier($fileName);
+            $photo->setBlobFile(base64_encode(file_get_contents($this->getParameter('photos_directory')."/".$fileName)));
             $photo->setExtension($ext);
             $photo->setTitre($form->get('titre')->getData());
             $photo->setDescription($form->get('description')->getData());
             $photo->setDate($form->get('date')->getData());
             $photo->setAuteur($this->getUser());
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($photo);
-            $em->flush();
-
-            return $this->redirectToRoute('home');
+            dump($photo);
+            die;
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($photo);
+//            $em->flush();
+//
+//            return $this->redirectToRoute('home');
         }
 
         return $this->render('SiteBundle:Photo:add.html.twig', array(

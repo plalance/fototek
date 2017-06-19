@@ -42,6 +42,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        file_loader: '%file_loader%'
 
 # Doctrine Configuration
 doctrine:

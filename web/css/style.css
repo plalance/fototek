@@ -7,4 +7,9 @@
     display: block;
     width: 100%; }
 
+.card.blob {
+  background-color: #d35656; }
+.card.blob-alternate {
+  background-color: #ffd67c; }
+
 /*# sourceMappingURL=style.css.map */

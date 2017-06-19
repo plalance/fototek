@@ -64,6 +64,11 @@ class Photo
     private $fichier;
 
     /**
+     * @ORM\Column(name="fichier_blob", type="blob", nullable=true)
+     */
+    private $blobFile;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="extension", type="string", length=255)
@@ -111,7 +116,6 @@ class Photo
      * @ORM\JoinColumn(name="id_appareil", referencedColumnName="id_appareil")
      */
     private $appareil;
-
 
 
     /**
@@ -405,8 +409,6 @@ class Photo
     }
 
 
-
-
     /**
      * @return string
      */
@@ -421,6 +423,27 @@ class Photo
     public function setFichier($fichier)
     {
         $this->fichier = $fichier;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBlobFile()
+    {
+        return $this->blobFile;
+    }
+
+    /**
+     * @param mixed $blobFile
+     */
+    public function setBlobFile($blobFile)
+    {
+        $this->blobFile = $blobFile;
+    }
+
+    public function getBlobFileRaw()
+    {
+        return base64_encode(stream_get_contents($this->blobFile));
     }
 }
 
