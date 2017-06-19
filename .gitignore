@@ -31,6 +31,9 @@
 /web/bundles/
 /web/uploads/
 
+# CSS autoo-generated
+/web/css/style.css
+
 # Assets managed by Bower
 /web/assets/vendor/
 
