@@ -10,7 +10,10 @@
   }
   img{
     display: block;
-    min-height: 100vh;
+  }
+  .responsive-img{
+    max-height:90vh;
+    max-width: 66vw;
   }
 }
 
