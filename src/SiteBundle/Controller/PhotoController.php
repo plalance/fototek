@@ -71,20 +71,20 @@ class PhotoController extends Controller
             $photo->setPublishedAt(date_create());
             $photo->setUpdatedAt(date_create());
             $photo->setFichier($fileName);
-            $photo->setBlobFile(base64_encode(file_get_contents($this->getParameter('photos_directory')."/".$fileName)));
+            $photo->setBlobFile(file_get_contents($this->getParameter('photos_directory')."/".$fileName));
             $photo->setExtension($ext);
             $photo->setTitre($form->get('titre')->getData());
             $photo->setDescription($form->get('description')->getData());
             $photo->setDate($form->get('date')->getData());
             $photo->setAuteur($this->getUser());
 
-            dump($photo);
-            die;
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($photo);
-//            $em->flush();
+//            dump($photo);
+//            die;
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($photo);
+            $em->flush();
 //
-//            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('SiteBundle:Photo:add.html.twig', array(
