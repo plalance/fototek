@@ -3,26 +3,25 @@
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden; }
+  #modalPhoto .btn-floating {
+    position: absolute;
+    top: 20px;
+    left: 20px; }
   #modalPhoto img {
     display: block;
-    width: 100%; }
+    min-height: 100vh; }
+  #modalPhoto .responsive-img {
+    max-height: 90vh; }
+
+.card .card-image {
+  max-height: 239px; }
+
+.one img {
+  width: 100%; }
 
 .card.blob {
   background-color: #d35656; }
 .card.blob-alternate {
   background-color: #ffd67c; }
-
-.card .card-image {
-  max-height: 239px; }
-
-#modalPhoto .btn-floating {
-  position: absolute;
-  top: 20px;
-  left: 20px; }
-#modalPhoto #photoFull {
-  max-height: 100%; }
-
-.one img {
-  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

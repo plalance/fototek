@@ -56,20 +56,20 @@
                         <i class="material-icons fermer">close</i>
                     </a>
                     <div class="col s12 m12 l12">
-                        <img id="photoFull" src="{{ asset('/images/Interface/side-nav-bg.jpg') }}" alt="test">
+                        <img id="photoFull" class="responsive-img" src="{{ asset('/images/Interface/side-nav-bg.jpg') }}" alt="test" >
                     </div>
                 </div>
                 {#<div class="row">#}
-                    {#<div class="description col l6 m6 s12">{{ photo.descption }}</div>#}
-                    {#<div>#}
-                        {#<p>{{ photo.auteur }}</p>#}
-                        {#<p>{{ photo.date|date("d/m/y") }}</p>#}
-                        {#<p>{{ photo. }}</p>#}
-                    {#</div>#}
-                </div>
+                {#<div class="description col l6 m6 s12">{{ photo.descption }}</div>#}
+                {#<div>#}
+                {#<p>{{ photo.auteur }}</p>#}
+                {#<p>{{ photo.date|date("d/m/y") }}</p>#}
+                {#<p>{{ photo. }}</p>#}
+                {#</div>#}
             </div>
         </div>
     </div>
+
     <script>
         $('.button-a').click(function () {
             var src = "{{ asset('/uploads/Photos/') }}" + $(this).attr("data-image");
