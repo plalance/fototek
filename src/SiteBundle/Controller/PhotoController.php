@@ -68,7 +68,7 @@ class PhotoController extends Controller
 //                $fileName
 //            );
             $destination = $this->getParameter('photos_directory')."/".$fileName;
-            $d = $this->compress($file, $destination, 75);
+            $d = $this->compress($file, $destination, 68);
 
             $photo->setPublishedAt(date_create());
             $photo->setUpdatedAt(date_create());
