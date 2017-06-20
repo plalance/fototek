@@ -24,7 +24,8 @@
                         {% endif %}
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ photo.titre }}<i
+                        <span class="card-title activator grey-text text-darken-4">{{ photo.titre }}<br>
+                            prise par : <strong>{{ photo.auteur.username }}</strong><i
                                     class="material-icons right">more_vert</i></span>
                         <p>
                             <a href="#modalPhoto" data-image="{{ photo.fichier }}" class="button-a"><i
