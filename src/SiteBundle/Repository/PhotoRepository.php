@@ -10,4 +10,15 @@ namespace SiteBundle\Repository;
  */
 class PhotoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllByTag ($tag)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->innerJoin('c.tags', 'tag')
+            ->where('tag.label = :label')
+            ->setParameter('label', $tag)
+            ->getQuery();
+
+        $products = $query->getResult();
+        return $products;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace SiteBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,14 +30,21 @@ class Tag
     private $label;
 
 
+//    /**
+//     * Owning Side
+//     *
+//     * @ORM\ManyToMany(targetEntity="Photo", inversedBy="tags")
+//     * @ORM\JoinTable(name="tags_photos",
+//     *      joinColumns={@ORM\JoinColumn(name="id_tag", referencedColumnName="id_tag")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="id_photo", referencedColumnName="id_photo")}
+//     *      )
+//     */
+//    private $photos;
+
+
     /**
-     * Owning Side
-     *
-     * @ORM\ManyToMany(targetEntity="Photo", inversedBy="tags")
-     * @ORM\JoinTable(name="tags_photos",
-     *      joinColumns={@ORM\JoinColumn(name="id_tag", referencedColumnName="id_tag")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="id_photo", referencedColumnName="id_photo")}
-     *      )
+     * Many Tags have Many photos.
+     * @ORM\ManyToMany(targetEntity="Photo", mappedBy="tags")
      */
     private $photos;
 
@@ -46,8 +54,13 @@ class Tag
      */
     public function __construct()
     {
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->label;
+    }
 
     /**
      * Get id
@@ -83,8 +96,13 @@ class Tag
         return $this->label;
     }
 
+
+
+
     /**
-     * @return mixed
+     * Get associated photos
+     *
+     * @return ArrayCollection
      */
     public function getPhotos()
     {
@@ -92,13 +110,24 @@ class Tag
     }
 
     /**
-     * @param mixed $photos
+     * Add Photo to this Tag
+     *
+     * @return Tag
+     */
+    public function addPhoto(Photo $photo)
+    {
+        $this->photos[] = $photo;
+        return $this;
+    }
+
+    /**
+     * Add Photos to this Attachment
+     *
+     * @param ArrayCollection
      */
     public function setPhotos($photos)
     {
         $this->photos = $photos;
     }
-
-
 }
 

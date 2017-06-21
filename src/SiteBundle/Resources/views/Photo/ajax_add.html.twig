@@ -9,6 +9,10 @@
         {{ form_widget(form.fichier) }}
     </div>
     <div>
+        {{ form_label(form.tags) }}
+        {{ form_widget(form.tags) }}
+    </div>
+    <div>
         {{ form_label(form.titre) }}
         {{ form_widget(form.titre) }}
     </div>
@@ -20,7 +24,6 @@
         {#{{ form_label(form.appareil) }}#}
         {{ form_widget(form.appareil) }}
     </div>
-
     <div>
         {#{{ form_label(form.objectif) }}#}
         {{ form_widget(form.objectif) }}
@@ -31,7 +34,7 @@
     </div>
     <div>
         {{ form_label(form.date) }}
-        {{ form_widget(form.date) }}
+        {{ form_widget(form.date, {'attr':{'class':'datepicker'}}) }}
     </div>
     <div>
         {{ form_label(form.save) }}
@@ -42,5 +45,8 @@
 <script>
     $(document).ready(function () {
         $('.material-select').material_select();
+        $('.multiple-select').material_select({
+            multiple: true
+        });
     });
 </script>

@@ -2,6 +2,7 @@
 
 namespace SiteBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -103,10 +104,28 @@ class Photo
      */
     private $auteur;
 
+//    /**
+//     * Inverse Side
+//     *
+//     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="photos")
+//     */
+//    private $tags;
+
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Categories", inversedBy="Blog", cascade={"persist"})
+//     * @ORM\JoinTable(name="wc_posts_categories",
+//     *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="categories_id", referencedColumnName="id")}
+//     *      )
+//     */
+
     /**
-     * Inverse Side
-     *
-     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="photos")
+     * Many Photos have Many Tags.
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="photos")
+     * @ORM\JoinTable(name="liaison_photo_tag",
+         *      joinColumns={@ORM\JoinColumn(name="id_photo", referencedColumnName="id_photo")},
+         *      inverseJoinColumns={@ORM\JoinColumn(name="id_tag", referencedColumnName="id_tag")}
+         *      )
      */
     private $tags;
 
@@ -126,13 +145,10 @@ class Photo
     private $objectif;
 
 
-    /**
-     * Photo constructor.
-     */
     public function __construct()
     {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -363,22 +379,6 @@ class Photo
     /**
      * @return mixed
      */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param mixed $tags
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getAppareil()
     {
         return $this->appareil;
@@ -444,6 +444,36 @@ class Photo
     public function getBlobFileRaw()
     {
         return base64_encode(stream_get_contents($this->blobFile));
+    }
+
+    /**
+     * Add an Tag
+     *
+     * @param ArrayCollection $tags
+     * @return Photo
+     */
+    public function setTags(ArrayCollection $tags)
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    /**
+     * Add an Attachment
+     *
+     * @param Tag $tag
+     * @return Photo
+     */
+    public function addTag(Tag $tag)
+    {
+        $tag->addPhoto($this); // synchronously updating inverse side
+        $this->tags[] = $tag;
+        return $this;
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
 

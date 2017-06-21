@@ -1,4 +1,7 @@
+@import "_components/loader";
+
 #modalPhoto{
+  z-index: 900;
   max-height: 100vh;
   height: 100vh;
   overflow-y: auto;
@@ -17,6 +20,7 @@
   }
 }
 #modalForm{
+  z-index: 900;
   .btn-floating{
     position: absolute;
     top: 20px;
