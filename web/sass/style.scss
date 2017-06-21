@@ -21,7 +21,13 @@
 
 .card{
   .card-image{
-    max-height: 239px;
+    height: 236px;
+    background-color: #000000;
+    img{
+      position: absolute;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
   }
 }
 
@@ -32,10 +38,22 @@
   }
 }
 .card{
+  color: #FFFFFF;
   &.blob{
-    background-color: #d35656;
+    background-color: #c62828;//#c62828 -> red darken-3
+    .card-content{
+      .card-title{
+        color: #FFFFFF!important;
+      }
+      .material-icons{
+        color: #FFFFFF;
+      }
+    }
   }
   &.blob-alternate{
     background-color: #ffd67c;
+    .material-icons{
+      color: #000!important;
+    }
   }
 }
