@@ -15,6 +15,15 @@ use Symfony\Component\HttpFoundation\File\MimeType;
 
 class TagController extends Controller {
 
+    public function photosAction($tag){
+        $tagFound = $this->getDoctrine()
+            ->getRepository('SiteBundle:Tag')
+            ->findOneBy(array('label' => $tag));
+        return $this->render('SiteBundle:Tag:listing_photos.html.twig', array(
+            "tag" => $tagFound,
+            "photos" => $tagFound->getPhotos()
+        ));
+    }
     public function listingTagAction(){
         $tags = $this->getDoctrine()
             ->getRepository('SiteBundle:Tag')

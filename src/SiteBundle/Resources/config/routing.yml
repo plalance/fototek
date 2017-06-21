@@ -1,6 +1,6 @@
 home:
-    path:     /
-    defaults: { _controller: SiteBundle:Site:index }
+    path:     /{tag}
+    defaults: { _controller: SiteBundle:Site:index , tag: null}
 
 #Overriding FOSUser NE PAS TOUCHER
 fos_user_profile_show:
@@ -12,6 +12,9 @@ fos_user_profile_edit:
     defaults: { _controller: FOSUserBundle:Profile:edit }
     methods:  [GET]
 
+tag_photos:
+    path:     /bytag/{tag}
+    defaults: { _controller: SiteBundle:Tag:photos }
 
 new_photo:
     path:     /photo/new
@@ -22,7 +25,7 @@ ajax_photo_create:
     defaults: { _controller: SiteBundle:Ajax:create }
 
 my_photos:
-    path:     /mes-photos
+    path:     /mes-photos/
     defaults: { _controller: SiteBundle:Photo:myPhotos }
 
 debug_photo:
@@ -54,11 +57,11 @@ delete_appareil:
         id: '\d+'
 
 my_stuff:
-    path:     /mes-appareils
+    path:     /mes-appareils/
     defaults: { _controller: SiteBundle:Site:myStuff }
 
 new_lens:
-    path:     /lens/new
+    path:     /lens/new/
     defaults: { _controller: SiteBundle:Site:newLens }
 
 delete_lens:
@@ -78,5 +81,5 @@ delete_tag:
         id: '\d+'
 
 listing_tag:
-    path:     /tags
+    path:     /tags/
     defaults: { _controller: SiteBundle:Tag:listingTag }

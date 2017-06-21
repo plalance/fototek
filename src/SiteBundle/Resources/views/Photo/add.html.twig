@@ -8,6 +8,10 @@
             {{ form_label(form.fichier) }}
             {{ form_widget(form.fichier) }}
         </div>
+        <div>
+            {{ form_label(form.tags) }}
+            {{ form_widget(form.tags) }}
+        </div>
         <div class="input-field col s12">
             {{ form_label(form.titre) }}
             {{ form_widget(form.titre) }}
@@ -31,7 +35,7 @@
         </div>
         <div class="col s12">
             {{ form_label(form.date) }}
-            {{ form_widget(form.date) }}
+            {{ form_widget(form.date, {'attr':{'class':'datepicker'}}) }}
         </div>
         <div class="col s12">
             {{ form_label(form.save) }}
@@ -40,11 +44,11 @@
         {{ form_end(form) }}
     </div>
     <script>
-        $('.material-select').material_select();
-//        $('.datepicker').pickadate({
-//            selectMonths: true,
-//            selectYears: 15
-//        });
-
+        $(document).ready(function () {
+            $('.material-select').material_select();
+            $('.multiple-select').material_select({
+                multiple: true
+            });
+        });
     </script>
 {% endblock %}

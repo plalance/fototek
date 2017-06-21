@@ -73,7 +73,13 @@ class PhotoType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => true,
             ))
-
+            ->add('tags', EntityType::class, array(
+                'label' => 'Les tags',
+                'class' => 'SiteBundle:Tag',
+                'attr' => ['class' => 'multiple-select', 'multiple'],
+                'multiple' => true,
+//                'expanded' => true
+            ))
 
             ->add('save', SubmitType::class, array(
                 'label' => 'Sauvegarder',

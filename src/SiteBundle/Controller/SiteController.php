@@ -6,22 +6,35 @@ use SiteBundle\Entity\Objectif;
 use SiteBundle\Entity\Photo;
 use SiteBundle\Entity\Appareil;
 use SiteBundle\Form\AppareilType;
+use SiteBundle\Repository\PhotoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class SiteController extends Controller
 {
-    public function indexAction()
+    public function indexAction($tag=null)
     {
         $me = $this->getUser();
+
         $photos = $this->getDoctrine()
             ->getRepository('SiteBundle:Photo')
             ->findBy(array(), array('publishedAt' => 'desc'));
 
-        return $this->render('SiteBundle:Site:index.html.twig', array(
-            "photos" =>$photos,
-            "me" => $me
+        $photoByTag = $this->getDoctrine()
+            ->getRepository('SiteBundle:Photo')->getAllByTag($tag);
+
+        if(!empty($photoByTag)){
+            return $this->render('SiteBundle:Site:index.html.twig', array(
+                "photos" =>$photoByTag,
+                "me" => $me,
+                "tag" => $tag
             ));
+        }else{
+            return $this->render('SiteBundle:Site:index.html.twig', array(
+                "photos" =>$photos,
+                "me" => $me,
+            ));
+        }
     }
 
     public function newAppareilAction (Request $request)
