@@ -9,7 +9,10 @@
                     <i class="material-icons">close</i>
                 </div>
             </form>
-            <a href="{{ path('fos_user_profile_show') }}">Mon profil</a>
+            {% if app.user is not null %}
+                <a href="{{ path('fos_user_profile_show') }}">Mon profil</a><br>
+                <a href="#" id="modalFormLink">Ajouter une photo (raccourci)</a>
+            {% endif %}
         </div>
     </div>
     <div class="row">
@@ -57,7 +60,8 @@
                         <i class="material-icons fermer">close</i>
                     </a>
                     <div class="col s12 m12 l12">
-                        <img id="photoFull" class="responsive-img" src="{{ asset('/images/Interface/side-nav-bg.jpg') }}" alt="test" >
+                        <img id="photoFull" class="responsive-img"
+                             src="{{ asset('/images/Interface/side-nav-bg.jpg') }}" alt="test">
                     </div>
                 </div>
                 {#<div class="row">#}
@@ -71,13 +75,77 @@
         </div>
     </div>
 
-    <script>
-        $('.button-a').click(function () {
-            var src = "{{ asset('/uploads/Photos/') }}" + $(this).attr("data-image");
-            console.log(src);
-            $("#photoFull").attr("src", src);
-        });
+    <div id="modalForm" class="test modal">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <a class="btn-floating btn-large red modal-action modal-close" data-activates="slide-out">
+                        <i class="material-icons fermer">close</i>
+                    </a>
+                </div>
+                <div class="row-content">
+                </div>
+            </div>
+        </div>
+    </div>
 
-        $('.modal').modal();
+    <script>
+        $(document).ready(function () {
+            $('.button-a').click(function () {
+                var src = "{{ asset('/uploads/Photos/') }}" + $(this).attr("data-image");
+                console.log(src);
+                $("#photoFull").attr("src", src);
+            });
+
+            $('#modalPhoto').modal();
+            $('#modalForm').modal({
+                    dismissible: true,
+                    opacity: .5,
+                    inDuration: 300,
+                    outDuration: 200,
+                    startingTop: '5%',
+                    endingTop: '5%',
+                    ready: function (modal, trigger) { // Callback open
+                        console.log(modal, trigger);
+                    },
+                    complete: function () {
+                    } // Callback close
+                }
+            );
+            $('#modalFormLink').click(function (evt) {
+                evt.preventDefault();
+                $.get("{{ path('ajax_photo_create') }}", function (data) {
+                    $('#modalForm .row-content').html(data);
+                    $('#modalForm').modal('open');
+                });
+            });
+            $('body').on("submit", ".form", function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ path('ajax_photo_create') }}",
+                    data: new FormData($(this)[0]),
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    success: function(response) {
+                        if (response.code && response.code == 200){
+                            $('#modalForm').modal('close');
+                            window.location.reload();
+                        }
+                    },
+                    error: function (response, desc, err){
+                        if (response.responseJSON && response.responseJSON.message) {
+                            alert(response.responseJSON.message);
+                        }
+                        else{
+                            alert(desc);
+                        }
+                    }
+                });
+            });
+        });
     </script>
 {% endblock %}

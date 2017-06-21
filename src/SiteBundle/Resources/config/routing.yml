@@ -17,6 +17,10 @@ new_photo:
     path:     /photo/new
     defaults: { _controller: SiteBundle:Photo:newPhoto }
 
+ajax_photo_create:
+    path:     /ajax/photo/create
+    defaults: { _controller: SiteBundle:Ajax:create }
+
 my_photos:
     path:     /mes-photos
     defaults: { _controller: SiteBundle:Photo:myPhotos }
