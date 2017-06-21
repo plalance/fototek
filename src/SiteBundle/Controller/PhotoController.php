@@ -73,7 +73,7 @@ class PhotoController extends Controller
             $photo->setPublishedAt(date_create());
             $photo->setUpdatedAt(date_create());
             $photo->setFichier($fileName);
-//            $photo->setBlobFile(file_get_contents($destination));
+            $photo->setBlobFile(file_get_contents($destination));
             $photo->setExtension($ext);
             $photo->setTitre($form->get('titre')->getData());
             $photo->setDescription($form->get('description')->getData());
