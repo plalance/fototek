@@ -28,7 +28,7 @@
                             <p>
                                 <a href="#"><i class="material-icons">aspect_ratio</i></a>
                                 <a href="#"><i class="material-icons">list</i></a>
-                                <a href="{{ path('delete_photo',{ 'id': photo.id }) }}" class="right"><i
+                                <a href="#" class="right supprime" data-supprime="{{ path('delete_photo',{ 'id': photo.id }) }}"><i
                                             class="material-icons">remove</i></a>
                             </p>
                         </div>
@@ -48,4 +48,33 @@
             {% endfor %}
         {% endif %}
     </div>
+    <div id="modalSupprime" class="test modal">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <p>Voulez-vous vraiment supprimer cette photo ?</p>
+                        <a id="supprime" class="btn waves-effect waves-light green white-text " href="">supprimer</a>
+                        <a id="annule" href="#" class="btn waves-effect waves-light red white-text right">annuler</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.supprime').click(function () {
+                var id = $(this).attr("data-supprime");
+                console.log(id);
+                $("#supprime").attr("href", id);
+                $('#modalSupprime').modal('open');
+            });
+            $('#modalSupprime').modal();
+
+            $('#annule').click(function () {
+                $('#modalSupprime').modal('close');
+            });
+        });
+    </script>
 {% endblock %}

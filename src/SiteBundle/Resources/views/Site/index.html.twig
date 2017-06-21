@@ -10,8 +10,10 @@
                 </div>
             </form>
             {% if app.user is not null %}
-                <a href="{{ path('fos_user_profile_show') }}">Mon profil</a><br>
-                <a href="#" id="modalFormLink">Ajouter une photo (raccourci)</a>
+                {#<a href="{{ path('fos_user_profile_show') }}">Mon profil</a><br>#}
+                <a href="#" id="modalFormLink" class="add btn-floating btn-large waves-effect waves-light red darken-3">
+                    <i class="material-icons ">add</i>
+                </a>
             {% endif %}
         </div>
     </div>
@@ -31,7 +33,7 @@
                             prise par : <strong>{{ photo.auteur.username }}</strong><i
                                     class="material-icons right">more_vert</i></span>
                         <p>
-                            <a href="#modalPhoto" data-image="{{ photo.fichier }}" class="button-a"><i
+                            <a href="#modalPhoto" data-image="{{ photo.fichier }}" data-description="{{ photo.description|slice(0,70)~"..." }}" data-auteur="{{ photo.auteur.username }}" data-titre="{{ photo.titre }}" class="button-a"><i
                                         class="material-icons">aspect_ratio</i></a>
                             <a href="{{ path('one_photo',{ 'id': photo.id }) }}"><i class="material-icons">list</i></a>
                         </p>
@@ -56,7 +58,7 @@
         <div class="modal-content">
             <div class="container">
                 <div class="row">
-                    <a class="btn-floating btn-large red modal-action modal-close" data-activates="slide-out">
+                    <a class="btn-floating btn-large red darken-3 modal-action modal-close" data-activates="slide-out">
                         <i class="material-icons fermer">close</i>
                     </a>
                     <div class="col s12 m12 l12">
@@ -64,13 +66,13 @@
                              src="{{ asset('/images/Interface/side-nav-bg.jpg') }}" alt="test">
                     </div>
                 </div>
-                {#<div class="row">#}
-                {#<div class="description col l6 m6 s12">{{ photo.descption }}</div>#}
-                {#<div>#}
-                {#<p>{{ photo.auteur }}</p>#}
-                {#<p>{{ photo.date|date("d/m/y") }}</p>#}
-                {#<p>{{ photo. }}</p>#}
-                {#</div>#}
+                <div class="row">
+                    <div>
+                        <h3 id="titre" class="s12 m12 l6"></h3>
+                        <p id="auteur" class="col s12 m12 l6"></p>
+                        <p id="desc" class="col s12 m12 l12"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -79,7 +81,7 @@
         <div class="modal-content">
             <div class="container">
                 <div class="row">
-                    <a class="btn-floating btn-large red modal-action modal-close" data-activates="slide-out">
+                    <a class="btn-floating btn-large red darken-3 modal-action modal-close fermer" data-activates="slide-out">
                         <i class="material-icons fermer">close</i>
                     </a>
                 </div>
@@ -93,8 +95,15 @@
         $(document).ready(function () {
             $('.button-a').click(function () {
                 var src = "{{ asset('/uploads/Photos/') }}" + $(this).attr("data-image");
+                var desc = "Desctiption : <br/>" + $(this).attr("data-description");
+                var auteur = "Prise par : <strong>" + $(this).attr("data-auteur") + "</strong>";
+                var titre = $(this).attr("data-titre");
                 console.log(src);
+                console.log(titre);
                 $("#photoFull").attr("src", src);
+                $("#desc").html(desc);
+                $("#titre").html(titre);
+                $("#auteur").html(auteur);
             });
 
             $('#modalPhoto').modal();

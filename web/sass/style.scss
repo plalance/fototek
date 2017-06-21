@@ -1,4 +1,4 @@
-#modalPhoto{
+#modalPhoto,#modalSupprime{
   max-height: 100vh;
   height: 100vh;
   overflow-y: auto;
@@ -14,6 +14,13 @@
   .responsive-img{
     max-height:90vh;
     max-width: 66vw;
+    position: relative;
+    margin:auto;
+  }
+  .row{
+    p{
+      padding: 0;
+    }
   }
 }
 #modalForm{
@@ -21,6 +28,15 @@
     position: absolute;
     top: 20px;
     left: 20px;
+  }
+}
+
+#modalSupprime{
+  height: auto;
+  width: 600px;
+  .row{
+    position: relative;
+    margin: auto;
   }
 }
 
@@ -45,10 +61,16 @@
   }
 }
 .card{
-  color: #FFFFFF;
+  color: #000;
+  .card-content{
+    .material-icons {
+      color: #000;
+    }
+  }
   &.blob{
     background-color: #c62828;//#c62828 -> red darken-3
     .card-content{
+      color: #FFFFFF;
       .card-title{
         color: #FFFFFF!important;
       }
@@ -62,5 +84,29 @@
     .material-icons{
       color: #000!important;
     }
+  }
+}
+
+//menu
+
+a{
+  &.menu{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  &.home{
+    position: relative;
+    top: 20px;
+  }
+}
+
+// btn add photo
+
+a{
+  &.add{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
   }
 }
