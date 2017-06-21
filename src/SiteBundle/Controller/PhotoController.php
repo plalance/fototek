@@ -63,15 +63,17 @@ class PhotoController extends Controller
             $file = $photo->getFichier();
             $ext = $file->getClientOriginalExtension();
             $fileName = md5(uniqid()).'.'.$ext;
-            $file->move(
-                $this->getParameter('photos_directory'),
-                $fileName
-            );
+//            $file->move(
+//                $this->getParameter('photos_directory'),
+//                $fileName
+//            );
+            $destination = $this->getParameter('photos_directory')."/".$fileName;
+            $d = $this->compress($file, $destination, 68);
 
             $photo->setPublishedAt(date_create());
             $photo->setUpdatedAt(date_create());
             $photo->setFichier($fileName);
-            $photo->setBlobFile(file_get_contents($this->getParameter('photos_directory')."/".$fileName));
+            $photo->setBlobFile(file_get_contents($destination));
             $photo->setExtension($ext);
             $photo->setTitre($form->get('titre')->getData());
             $photo->setDescription($form->get('description')->getData());
@@ -124,5 +126,23 @@ class PhotoController extends Controller
         return $this->render('SiteBundle:Photo:suppression.html.twig', array(
             "supression" => $suppression,
         ));
+    }
+
+    public function compress($source, $destination, $quality) {
+
+        $info = getimagesize($source);
+
+        if ($info['mime'] == 'image/jpeg')
+            $image = imagecreatefromjpeg($source);
+
+        elseif ($info['mime'] == 'image/gif')
+            $image = imagecreatefromgif($source);
+
+        elseif ($info['mime'] == 'image/png')
+            $image = imagecreatefrompng($source);
+
+        imagejpeg($image, $destination, $quality);
+
+        return $destination;
     }
 }
