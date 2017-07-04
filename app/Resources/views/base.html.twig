@@ -49,8 +49,10 @@
                             un appareil</a></li>
                     <li><a class="waves-effect" href="{{ path('new_lens') }}"><i class="material-icons">add</i>Ajouter
                             un objectif</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
                     <li><a class="waves-effect" href="{{ path('new_tag') }}"><i class="material-icons">add</i>Ajouter
                             un tag</a></li>
+                {% endif %}
                     <li><a class="waves-effect" href="{{ path('my_stuff') }}"><i class="material-icons">camera</i>Mon matériel</a></li>
                 {#{% endif %}#}
                 <li><a class="waves-effect" href="{{ path('fos_user_profile_edit') }}"><i class="material-icons">edit</i>Editer mon profil</a></li>
