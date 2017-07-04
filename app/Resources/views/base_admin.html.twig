@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Accueil{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/css/materialize.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% endblock %}
+    <script src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ asset('/js/materialize.min.js') }}"></script>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<header>
+    {% block header %}
+        <ul id="slide-out" class="side-nav">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li>
+                    <div class="userView">
+                        <div class="background">
+                            <img src="{{ asset('/images/interface/side-nav-bg.jpg') }}">
+                        </div>
+                        <a href="#"><img class="circle" src="{{ asset('/images/profile/profile.png') }}"></a>
+                        <a href="#"><span class="white-text name">{{ app.user.username }}</span></a>
+                        <a href="#"><span class="white-text email">{{ app.user.email }}</span></a>
+                    </div>
+                </li>
+                <li><a href="{{ path('fos_user_security_logout') }}">
+                        Se déconnecter
+                    </a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path("admin_tag_index") }}"><i class="material-icons">cloud</i>Tags</a></li>
+                {% endif %}
+            {% else %}
+                <a class="btn-floating btn-large waves-effect waves-light red"
+                   href="{{ path('fos_user_security_login') }}"><i class="material-icons">perm_identity</i></a>
+            {% endif %}
+        </ul>
+        <div class="row">
+            <div class="col s2 center-align">
+                <a class="btn-floating btn-large red darken-3 button-collapse menu" data-activates="slide-out">
+                    <i class="material-icons">menu</i>
+                </a>
+            </div>
+            <div class="col s2 offset-s3 center-align">
+                <a class="btn-floating btn-large waves-effect waves-light red darken-3 home" href="{{ path('admin_homepage') }}"><i
+                            class="material-icons ">home</i></a>
+            </div>
+        </div>
+    {% endblock %}
+</header>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+<div class="loading-off"></div>
+{% block javascripts %}
+    <script src="{{ asset('/js/main.js') }}"></script>
+    <script src="{{ asset('/js/admin.js') }}"></script>
+    <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>
