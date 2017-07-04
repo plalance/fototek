@@ -2,7 +2,7 @@
 
 namespace AdminBundle\Controller;
 
-use AdminBundle\Entity\Tag;
+use SiteBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,7 +20,7 @@ class TagController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tags = $em->getRepository('AdminBundle:Tag')->findAll();
+        $tags = $em->getRepository('SiteBundle:Tag')->findAll();
 
         return $this->render('AdminBundle:tag:index.html.twig', array(
             'tags' => $tags,
