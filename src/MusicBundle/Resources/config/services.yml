@@ -1,4 +1,0 @@
-services:
-#    music.example:
-#        class: MusicBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]

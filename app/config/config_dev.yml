@@ -33,5 +33,5 @@ monolog:
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
 
-twig:
-    cache: false
+#twig:
+#    cache: false

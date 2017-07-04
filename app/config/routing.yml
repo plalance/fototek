@@ -1,13 +1,13 @@
-music:
-    resource: "@MusicBundle/Resources/config/routing.yml"
-    prefix:   /music/
-
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 site:
     resource: "@SiteBundle/Resources/config/routing.yml"
     prefix:   /
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin/
 
 app:
     resource: '@AppBundle/Controller/'

@@ -1,7 +1,4 @@
-
-
-
-// Vérifier nos entités
+// Vérifier les entités
 php bin/console doctrine:schema:validate
 
 doctrine:schema:update --force ou --dump-sql
@@ -9,8 +6,11 @@ doctrine:schema:update --force ou --dump-sql
 // Mettre à jour la base de donnée par rapport à nos entités
 php bin/console doctrine:schema:update --force
 
-// Générer un nouveau bundle
-generate:bundle
+php bin/console fos:user:create
+entrez les infos demandées...
 
-// Générer une entité
-doctrine:generate:entity
+php bin/console fos:user:activate
+Saisir le nom du user a activer
+
+php bin/console fos:user:promote
+Saisir le nom du user a promouvoir et assignez lui le role : ROLE_ADMIN

@@ -41,13 +41,13 @@ class Auteur extends BaseUser
 
     /**
  * Un auteur possède plusieurs appareils
- * @ORM\OneToMany(targetEntity="Appareil", mappedBy="auteur")
+ * @ORM\OneToMany(targetEntity="Appareil", mappedBy="auteur", cascade={"remove"})
  */
     protected $appareils;
 
     /**
      * Un auteur possède plusieurs objectifs
-     * @ORM\OneToMany(targetEntity="Objectif", mappedBy="auteur")
+     * @ORM\OneToMany(targetEntity="Objectif", mappedBy="auteur", cascade={"remove"})
      */
     protected $objectifs;
 
@@ -82,13 +82,6 @@ class Auteur extends BaseUser
     {
         $this->appareils = $appareils;
     }
-
-    /**
-     * Un auteur possède plusieurs sons
-     * @ORM\OneToMany(targetEntity="MusicBundle\Entity\Sound", mappedBy="auteur")
-     */
-    protected $sounds;
-
 
     public function __construct()
     {
@@ -143,24 +136,5 @@ class Auteur extends BaseUser
     {
         $this->photos = $photos;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getSounds()
-    {
-        return $this->sounds;
-    }
-
-    /**
-     * @param mixed $sounds
-     */
-    public function setSounds($sounds)
-    {
-        $this->sounds = $sounds;
-    }
-
-
-
 }
 

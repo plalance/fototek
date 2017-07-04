@@ -18,36 +18,6 @@ class PhotoController extends Controller
     public function myPhotosAction()
     {
         $photos = $this->getUser()->getPhotos();
-//        $autorId = $this->getUser()->getId();
-//
-//        $fileLoader = $this->container->getParameter('file_loader');
-//
-//        $photos = array();
-//
-//        $connection = $this->getDoctrine()->getManager()->getConnection();
-//        $statement = $connection->prepare("SELECT * FROM getphotos()");
-////        $statement->bindValue('idd', $autorId);
-//        $statement->execute();
-//
-//        while ($row = $statement->fetch()) {
-//            $obj = json_decode($row['getphotos']);
-//            dump($obj);
-//            $photo = new Photo();
-//            $photo->setTitre($obj.titre);
-//            $photo->setDescription($obj.descritpion);
-//            $photo->setDate($obj.date);
-//            $photo->setPublishedAt($obj.publishedat);
-//            $photo->setUpdatedAt($obj.updatedat);
-//            switch ($fileLoader){
-//                case 'BLOB':
-//                    $photo->setBlobFile($obj);
-//                    break;
-//                case 'FILE':
-//                    break;
-//            }
-//        }
-//        dump($var);
-//        die;
         return $this->render('SiteBundle:Photo:my-photos.html.twig', array(
             "photos" => $photos,
         ));
@@ -63,17 +33,13 @@ class PhotoController extends Controller
             $file = $photo->getFichier();
             $ext = $file->getClientOriginalExtension();
             $fileName = md5(uniqid()).'.'.$ext;
-//            $file->move(
-//                $this->getParameter('photos_directory'),
-//                $fileName
-//            );
             $destination = $this->getParameter('photos_directory')."/".$fileName;
             $d = $this->compress($file, $destination, 68);
 
             $photo->setPublishedAt(date_create());
             $photo->setUpdatedAt(date_create());
             $photo->setFichier($fileName);
-            $photo->setBlobFile(file_get_contents($destination));
+//            $photo->setBlobFile(file_get_contents($destination));
             $photo->setExtension($ext);
             $photo->setTitre($form->get('titre')->getData());
             $photo->setDescription($form->get('description')->getData());
@@ -81,13 +47,10 @@ class PhotoController extends Controller
             $photo->setAuteur($this->getUser());
             $photo->setTags($form->get('tags')->getData());
 
-//            dump($photo);
-//            die;
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush();
-//
+
             return $this->redirectToRoute('home');
         }
 
