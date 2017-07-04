@@ -36,9 +36,7 @@
                 </li>
                 <li><a class="subheader">Activités</a></li>
                 <li><a href="#"><i class="material-icons">cloud</i>Découverte de photos</a></li>
-                {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="{{ path("listing_tag") }}"><i class="material-icons">cloud</i>Listing des Tags</a></li>
-                {% endif %}
 
                     <li><a href="{{ path('my_photos') }}"><i class="material-icons">perm_media</i>Mes albums /
                             photos</a></li>
