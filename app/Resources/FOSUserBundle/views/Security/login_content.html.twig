@@ -17,6 +17,11 @@
 
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
     <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    <br>
+    <label for="forgot">Mot de passe oublie ?</label>
+    <br><br>
+    {#<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />#}
+    <button class="btn waves-effect waves-light" type="submit" name="action" value="{{ 'security.login.submit'|trans }}">Se connecter
+        <i class="material-icons right">send</i>
+    </button>
 </form>

@@ -11,6 +11,8 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 98c7cab866879d9250d316445c6d136c922a6b6f
+#        file_loader: "FILE"
+    #    file_loader: "BLOB"
 
 #parameters:
 #    database_host: 127.0.0.1

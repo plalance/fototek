@@ -10,3 +10,5 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 34f6cd9b15585c71bd5c88cce795fba9b02a2565
+#        file_loader: "FILE"
+    #    file_loader: "BLOB"
